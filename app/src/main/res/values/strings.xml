@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KakaoImageAPI</string>
+    <string name="hint_search">이미지를 검색하세요</string>
 </resources>
