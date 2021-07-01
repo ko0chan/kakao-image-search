@@ -8,6 +8,7 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.kychan.kakaoimageapi.R
 import com.kychan.kakaoimageapi.databinding.ActivityFullImageBinding
+import java.text.SimpleDateFormat
 
 class FullImageActivity : AppCompatActivity() {
 
@@ -29,6 +30,9 @@ class FullImageActivity : AppCompatActivity() {
             Glide.with(this@FullImageActivity)
                 .load(searchImageItem.imageUrl)
                 .into(fullImage)
+
+            displaySitename.text = searchImageItem.displaySiteName
+            datetime.text = SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(searchImageItem.datetime)
         }
     }
 
