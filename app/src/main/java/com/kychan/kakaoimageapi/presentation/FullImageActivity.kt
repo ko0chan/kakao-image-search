@@ -5,17 +5,31 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
+import com.bumptech.glide.Glide
 import com.kychan.kakaoimageapi.R
 import com.kychan.kakaoimageapi.databinding.ActivityFullImageBinding
 
 class FullImageActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityFullImageBinding
+    private val searchImageItem by lazy {
+        intent.getSerializableExtra(KEY_IMAGE_INFO) as SearchImageItem
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_full_image)
         binding.lifecycleOwner = this
+
+        setView()
+    }
+
+    private fun setView() {
+        with(binding) {
+            Glide.with(this@FullImageActivity)
+                .load(searchImageItem.imageUrl)
+                .into(fullImage)
+        }
     }
 
     companion object {
