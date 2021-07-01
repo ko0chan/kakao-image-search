@@ -2,15 +2,19 @@ package com.kychan.kakaoimageapi.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.activity.viewModels
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
 import com.kychan.kakaoimageapi.R
 import com.kychan.kakaoimageapi.databinding.ActivityMainBinding
+import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private val mainViewModel by viewModels<MainViewModel>()
     private val searchImageAdapter by lazy {
         SearchImageAdapter {
 
@@ -23,6 +27,7 @@ class MainActivity : AppCompatActivity() {
         binding.lifecycleOwner = this
 
         setView()
+        setViewModel()
     }
 
     private fun setView() {
@@ -69,6 +74,15 @@ class MainActivity : AppCompatActivity() {
                 )
             )
 
+        }
+    }
+
+    private fun setViewModel() {
+        with(mainViewModel) {
+            getSearchImage("어벤져스")
+            searchImageList.observe(this@MainActivity, {
+                searchImageAdapter.submitList(it)
+            })
         }
     }
 }
