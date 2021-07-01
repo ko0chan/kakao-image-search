@@ -19,7 +19,9 @@ class FullImageActivity : AppCompatActivity() {
     }
 
     companion object {
-        fun getIntent(context: Context) =
+        private const val KEY_IMAGE_INFO = "IMAGE_INFO"
+        fun getIntent(context: Context, searchImageItem: SearchImageItem) =
             Intent(context, FullImageActivity::class.java)
+                .putExtra(KEY_IMAGE_INFO, searchImageItem)
     }
 }

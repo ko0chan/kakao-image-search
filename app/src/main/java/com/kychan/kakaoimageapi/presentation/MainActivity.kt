@@ -18,8 +18,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     private val mainViewModel by viewModels<MainViewModel>()
     private val searchImageAdapter by lazy {
-        SearchImageAdapter {
-
+        SearchImageAdapter { searchImageItem ->
+            startActivity(FullImageActivity.getIntent(this, searchImageItem))
         }
     }
 
