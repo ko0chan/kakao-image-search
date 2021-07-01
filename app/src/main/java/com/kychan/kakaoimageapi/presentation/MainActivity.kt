@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import androidx.activity.viewModels
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
@@ -65,6 +66,7 @@ class MainActivity : AppCompatActivity() {
         with(mainViewModel) {
             searchImageList.observe(this@MainActivity, {
                 searchImageAdapter.submitList(it)
+                binding.emptyTitle.isVisible = it.isNullOrEmpty()
             })
         }
     }
