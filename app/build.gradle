@@ -60,6 +60,10 @@ dependencies {
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
 
+    //RxJava
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+
     //Hilt
     implementation "com.google.dagger:hilt-android:2.31-alpha"
     kapt "com.google.dagger:hilt-android-compiler:2.31-alpha"
