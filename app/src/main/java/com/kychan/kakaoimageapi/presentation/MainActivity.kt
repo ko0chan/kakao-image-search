@@ -1,12 +1,11 @@
-package com.kychan.kakaoimageapi
+package com.kychan.kakaoimageapi.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.GridLayoutManager
+import com.kychan.kakaoimageapi.R
 import com.kychan.kakaoimageapi.databinding.ActivityMainBinding
-import com.kychan.kakaoimageapi.presentation.SearchImageAdapter
-import com.kychan.kakaoimageapi.presentation.SearchImageItem
 import java.util.*
 
 class MainActivity : AppCompatActivity() {
