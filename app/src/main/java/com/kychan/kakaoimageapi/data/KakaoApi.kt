@@ -10,6 +10,8 @@ interface KakaoApi {
     @GET("v2/search/image")
     fun getSearchImage(
         @Header("Authorization") authorization: String = "KakaoAK 8f68bda18482639d9a484b48cce93cc9",
-        @Query("query") query: String
+        @Query("query") query: String,
+        @Query("page") page: Int?,
+        @Query("size") size: Int?,
     ): Single<SearchImageResponse>
 }
