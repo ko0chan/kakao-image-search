@@ -4,9 +4,7 @@ import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
-import com.kychan.kakaoimageapi.R
 import com.kychan.kakaoimageapi.databinding.ActivityFullImageBinding
 import java.text.SimpleDateFormat
 
@@ -19,8 +17,8 @@ class FullImageActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = DataBindingUtil.setContentView(this, R.layout.activity_full_image)
-        binding.lifecycleOwner = this
+        binding = ActivityFullImageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setView()
     }
