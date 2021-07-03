@@ -1,5 +1,6 @@
 package com.kychan.kakaoimageapi.presentation
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import io.reactivex.subjects.PublishSubject
+import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
@@ -17,6 +20,20 @@ class MainViewModel @Inject constructor() : ViewModel() {
     private val _searchImageList = MutableLiveData<List<SearchImageItem>>()
     val searchImageList: LiveData<List<SearchImageItem>>
         get() = _searchImageList
+
+    val textChange: PublishSubject<String> = PublishSubject.create()
+
+    init {
+        compositeDisposable.add(
+            textChange
+                .debounce(1, TimeUnit.SECONDS)
+                .observeOn(AndroidSchedulers.mainThread())
+                .doOnNext {
+                    getSearchImage(it)
+                }
+                .subscribe()
+        )
+    }
 
 
     fun getSearchImage(searchWord: String) {
@@ -28,7 +45,7 @@ class MainViewModel @Inject constructor() : ViewModel() {
                 .subscribe({
                     _searchImageList.value = it.toSearchImageListItem()
                 }, {
-
+                    Log.d("TAG", it.toString())
                 })
         )
     }

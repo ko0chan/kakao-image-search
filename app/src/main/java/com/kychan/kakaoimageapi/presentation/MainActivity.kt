@@ -47,6 +47,7 @@ class MainActivity : AppCompatActivity() {
                 }
                 doOnTextChanged { text, _, _, _ ->
                     clearButton.isGone = text.isNullOrEmpty()
+                    mainViewModel.textChange.onNext(text.toString())
                 }
             }
 
