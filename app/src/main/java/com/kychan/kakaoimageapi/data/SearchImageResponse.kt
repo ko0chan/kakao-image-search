@@ -6,14 +6,14 @@ import java.util.*
 
 data class SearchImageResponse(
     @SerializedName("meta")
-    val searchImageMeta: SearchImageMeta?,
+    val searchImageMetaResponse: SearchImageMetaResponse?,
     @SerializedName("documents")
-    val searchImageDocumentsList: List<SearchImageDocuments>?
+    val searchImageDocumentsResponseList: List<SearchImageDocumentsResponse>?
 ) {
     fun toSearchImageListItem(): List<SearchImageItem> {
         val list = mutableListOf<SearchImageItem>()
-        if (searchImageDocumentsList != null) {
-            for (searchImageDocuments in searchImageDocumentsList) {
+        if (searchImageDocumentsResponseList != null) {
+            for (searchImageDocuments in searchImageDocumentsResponseList) {
                 list.add(
                     SearchImageItem(
                         imageUrl = searchImageDocuments.imageUrl.orEmpty(),
@@ -27,7 +27,7 @@ data class SearchImageResponse(
     }
 }
 
-data class SearchImageMeta(
+data class SearchImageMetaResponse(
     @SerializedName("total_count")
     val totalCount: Int = -1,
     @SerializedName("pageable_count")
@@ -36,7 +36,7 @@ data class SearchImageMeta(
     val isEnd: Boolean = false
 )
 
-data class SearchImageDocuments(
+data class SearchImageDocumentsResponse(
     @SerializedName("collection")
     val collection: String?,
     @SerializedName("thumbnail_url")
@@ -50,7 +50,7 @@ data class SearchImageDocuments(
     @SerializedName("display_sitename")
     val displaySitename: String?,
     @SerializedName("doc_url")
-    val doc_url: String?,
+    val docUrl: String?,
     @SerializedName("datetime")
     val datetime: Date?
 )
