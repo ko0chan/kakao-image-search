@@ -1,8 +1,7 @@
 package com.kychan.kakaoimageapi.domain
 
-import com.kychan.kakaoimageapi.data.SearchImageResponse
-import io.reactivex.Single
+import androidx.paging.DataSource
 
 interface SearchRepository {
-    fun searchImage(searchWord: String): Single<SearchImageResponse>
+    fun searchImage(searchWord: String): DataSource.Factory<Int, SearchImageDocuments>
 }
