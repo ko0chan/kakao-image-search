@@ -1,7 +1,7 @@
 package com.kychan.kakaoimageapi.data
 
 import com.google.gson.annotations.SerializedName
-import com.kychan.kakaoimageapi.presentation.SearchImageItem
+import com.kychan.kakaoimageapi.domain.SearchImageDocuments
 import java.util.*
 
 data class SearchImageResponse(
@@ -9,23 +9,7 @@ data class SearchImageResponse(
     val searchImageMetaResponse: SearchImageMetaResponse?,
     @SerializedName("documents")
     val searchImageDocumentsResponseList: List<SearchImageDocumentsResponse>?
-) {
-    fun toSearchImageListItem(): List<SearchImageItem> {
-        val list = mutableListOf<SearchImageItem>()
-        if (searchImageDocumentsResponseList != null) {
-            for (searchImageDocuments in searchImageDocumentsResponseList) {
-                list.add(
-                    SearchImageItem(
-                        imageUrl = searchImageDocuments.imageUrl.orEmpty(),
-                        displaySiteName = searchImageDocuments.displaySitename.orEmpty(),
-                        datetime = searchImageDocuments.datetime ?: Date()
-                    )
-                )
-            }
-        }
-        return list
-    }
-}
+)
 
 data class SearchImageMetaResponse(
     @SerializedName("total_count")
@@ -53,4 +37,16 @@ data class SearchImageDocumentsResponse(
     val docUrl: String?,
     @SerializedName("datetime")
     val datetime: Date?
-)
+) {
+    fun toSearchImageDocuments(): SearchImageDocuments =
+        SearchImageDocuments(
+            collection = collection.orEmpty(),
+            thumbnailUrl =thumbnailUrl.orEmpty(),
+            imageUrl =imageUrl.orEmpty(),
+            width =width,
+            height =height,
+            displaySitename = displaySitename.orEmpty(),
+            docUrl =docUrl.orEmpty(),
+            datetime = datetime ?: Date()
+        )
+}
