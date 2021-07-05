@@ -8,7 +8,7 @@ data class SearchImage(
 )
 
 data class SearchImageMeta(
-    val totalCount: Int
+    val totalCount: Int,
     val pageableCount: Int,
     val isEnd: Boolean
 )
