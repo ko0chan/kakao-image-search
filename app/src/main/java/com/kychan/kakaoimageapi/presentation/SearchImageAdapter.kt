@@ -1,13 +1,13 @@
 package com.kychan.kakaoimageapi.presentation
 
 import android.view.ViewGroup
+import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 
 class SearchImageAdapter(
     private val itemClick: (SearchImageItem) -> Unit
 ) :
-    ListAdapter<SearchImageItem, SearchImageViewHolder>(DIFF_CALLBACK) {
+    PagedListAdapter<SearchImageItem, SearchImageViewHolder>(DIFF_CALLBACK) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchImageViewHolder =
         SearchImageViewHolder(parent, itemClick)
