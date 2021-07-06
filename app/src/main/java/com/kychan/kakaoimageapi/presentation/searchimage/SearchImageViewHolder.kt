@@ -1,4 +1,4 @@
-package com.kychan.kakaoimageapi.presentation
+package com.kychan.kakaoimageapi.presentation.searchimage
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -13,8 +13,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.KakaoImageAPI"
         android:usesCleartextTraffic="true">
-        <activity android:name=".presentation.FullImageActivity" />
-        <activity android:name=".presentation.MainActivity">
+        <activity android:name=".presentation.imagedetail.ImageDetailActivity" />
+        <activity android:name=".presentation.searchimage.SearchImageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

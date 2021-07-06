@@ -1,6 +1,6 @@
-package com.kychan.kakaoimageapi.presentation
+package com.kychan.kakaoimageapi.presentation.searchimage
 
-import com.kychan.kakaoimageapi.domain.SearchImageDocuments
+import com.kychan.kakaoimageapi.domain.entity.SearchImageDocuments
 import java.io.Serializable
 import java.util.*
 

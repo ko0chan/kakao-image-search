@@ -1,11 +1,11 @@
-package com.kychan.kakaoimageapi.presentation
+package com.kychan.kakaoimageapi.presentation.searchimage
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.kychan.kakaoimageapi.domain.SearchRepository
+import com.kychan.kakaoimageapi.domain.repository.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -15,7 +15,7 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
+class SearchImageViewModel @Inject constructor(
     private val searchRepository: SearchRepository
 ) : ViewModel() {
 

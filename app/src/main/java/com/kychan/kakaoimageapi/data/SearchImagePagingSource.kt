@@ -3,6 +3,8 @@ package com.kychan.kakaoimageapi.data
 import android.util.Log
 import androidx.paging.PagingState
 import androidx.paging.rxjava2.RxPagingSource
+import com.kychan.kakaoimageapi.data.network.KakaoApi
+import com.kychan.kakaoimageapi.data.network.SearchImageDocumentsResponse
 import io.reactivex.Single
 import io.reactivex.schedulers.Schedulers
 import retrofit2.HttpException

@@ -2,8 +2,9 @@ package com.kychan.kakaoimageapi.data
 
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.kychan.kakaoimageapi.domain.SearchImageDocuments
-import com.kychan.kakaoimageapi.domain.SearchRepository
+import com.kychan.kakaoimageapi.data.network.SearchRemoteDataSource
+import com.kychan.kakaoimageapi.domain.entity.SearchImageDocuments
+import com.kychan.kakaoimageapi.domain.repository.SearchRepository
 import io.reactivex.Observable
 import javax.inject.Inject
 

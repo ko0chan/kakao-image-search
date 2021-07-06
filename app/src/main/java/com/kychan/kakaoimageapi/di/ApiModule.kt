@@ -1,6 +1,6 @@
 package com.kychan.kakaoimageapi.di
 
-import com.kychan.kakaoimageapi.data.KakaoApi
+import com.kychan.kakaoimageapi.data.network.KakaoApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

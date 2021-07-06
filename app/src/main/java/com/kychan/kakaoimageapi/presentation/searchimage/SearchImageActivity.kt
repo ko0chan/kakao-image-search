@@ -1,4 +1,4 @@
-package com.kychan.kakaoimageapi.presentation
+package com.kychan.kakaoimageapi.presentation.searchimage
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,23 +8,24 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
 import androidx.recyclerview.widget.GridLayoutManager
-import com.kychan.kakaoimageapi.databinding.ActivityMainBinding
+import com.kychan.kakaoimageapi.databinding.ActivitySearchImageBinding
+import com.kychan.kakaoimageapi.presentation.imagedetail.ImageDetailActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
+class SearchImageActivity : AppCompatActivity() {
 
-    private lateinit var binding: ActivityMainBinding
-    private val mainViewModel by viewModels<MainViewModel>()
+    private lateinit var binding: ActivitySearchImageBinding
+    private val mainViewModel by viewModels<SearchImageViewModel>()
     private val searchImageAdapter by lazy {
         SearchImageAdapter { searchImageItem ->
-            startActivity(FullImageActivity.getIntent(this, searchImageItem))
+            startActivity(ImageDetailActivity.getIntent(this, searchImageItem))
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = ActivitySearchImageBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setView()
@@ -55,7 +56,7 @@ class MainActivity : AppCompatActivity() {
             }
 
             rvImage.adapter = searchImageAdapter
-            rvImage.layoutManager = GridLayoutManager(this@MainActivity, 3)
+            rvImage.layoutManager = GridLayoutManager(this@SearchImageActivity, 3)
 
             searchImageAdapter.addLoadStateListener {
                 binding.emptyTitle.isVisible = searchImageAdapter.itemCount == 0
@@ -66,7 +67,7 @@ class MainActivity : AppCompatActivity() {
 
     private fun setViewModel() {
         with(mainViewModel) {
-            searchImageList.observe(this@MainActivity, {
+            searchImageList.observe(this@SearchImageActivity, {
                 searchImageAdapter.submitData(lifecycle, it)
             })
         }

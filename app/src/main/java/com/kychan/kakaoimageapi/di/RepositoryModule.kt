@@ -1,7 +1,7 @@
 package com.kychan.kakaoimageapi.di
 
 import com.kychan.kakaoimageapi.data.SearchRepositoryImpl
-import com.kychan.kakaoimageapi.domain.SearchRepository
+import com.kychan.kakaoimageapi.domain.repository.SearchRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

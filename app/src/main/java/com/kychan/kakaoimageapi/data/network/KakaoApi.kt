@@ -1,4 +1,4 @@
-package com.kychan.kakaoimageapi.data
+package com.kychan.kakaoimageapi.data.network
 
 import io.reactivex.Single
 import retrofit2.http.GET

@@ -1,7 +1,7 @@
-package com.kychan.kakaoimageapi.data
+package com.kychan.kakaoimageapi.data.network
 
 import com.google.gson.annotations.SerializedName
-import com.kychan.kakaoimageapi.domain.SearchImageDocuments
+import com.kychan.kakaoimageapi.domain.entity.SearchImageDocuments
 import java.util.*
 
 data class SearchImageResponse(

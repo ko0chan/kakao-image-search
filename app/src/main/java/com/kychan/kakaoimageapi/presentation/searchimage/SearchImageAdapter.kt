@@ -1,4 +1,4 @@
-package com.kychan.kakaoimageapi.presentation
+package com.kychan.kakaoimageapi.presentation.searchimage
 
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter

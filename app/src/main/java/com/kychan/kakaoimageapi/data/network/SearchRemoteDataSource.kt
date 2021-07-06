@@ -1,9 +1,10 @@
-package com.kychan.kakaoimageapi.data
+package com.kychan.kakaoimageapi.data.network
 
 import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import androidx.paging.rxjava2.observable
+import com.kychan.kakaoimageapi.data.SearchImagePagingSource
 import io.reactivex.Observable
 import javax.inject.Inject
 
