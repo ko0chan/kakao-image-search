@@ -59,7 +59,7 @@ class SearchImageActivity : AppCompatActivity() {
             rvImage.layoutManager = GridLayoutManager(this@SearchImageActivity, 3)
 
             searchImageAdapter.addLoadStateListener {
-                binding.emptyTitle.isVisible = searchImageAdapter.itemCount == 0
+                binding.emptyContainer.isVisible = searchImageAdapter.itemCount == 0
             }
 
         }
