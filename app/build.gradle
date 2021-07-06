@@ -19,7 +19,7 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
-    buildFeatures{
+    buildFeatures {
         viewBinding = true
     }
 
@@ -41,30 +41,31 @@ android {
 dependencies {
 
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.5.0'
-    implementation 'androidx.appcompat:appcompat:1.3.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+    implementation "androidx.core:core-ktx:$coreVersion"
+    implementation "androidx.appcompat:appcompat:$appCompatVersion"
+    implementation "com.google.android.material:material:$materialVersion"
+    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
 
-    implementation "androidx.activity:activity-ktx:1.2.3"
+    implementation "androidx.activity:activity-ktx:$activityVersion"
 
     //Paging
-    implementation "androidx.paging:paging-runtime-ktx:$paging_version"
+    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
+    implementation "androidx.paging:paging-rxjava2-ktx:$pagingVersion"
 
     //Glide
     implementation "com.github.bumptech.glide:glide:$glideVersion"
-    annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
+    kapt "com.github.bumptech.glide:compiler:$glideVersion"
 
     //Retrofit2
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
 
     //RxJava
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
 
     //Hilt
-    implementation "com.google.dagger:hilt-android:2.31-alpha"
-    kapt "com.google.dagger:hilt-android-compiler:2.31-alpha"
+    implementation "com.google.dagger:hilt-android:$hiltVersion"
+    kapt "com.google.dagger:hilt-android-compiler:$hiltVersion"
 }
