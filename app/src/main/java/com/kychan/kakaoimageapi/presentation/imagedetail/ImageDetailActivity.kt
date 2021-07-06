@@ -25,7 +25,6 @@ class ImageDetailActivity : AppCompatActivity() {
 
     private fun setView() {
         with(binding) {
-            supportActionBar?.hide()
             Glide.with(this@ImageDetailActivity)
                 .load(searchImageItem.imageUrl)
                 .into(fullImage)
