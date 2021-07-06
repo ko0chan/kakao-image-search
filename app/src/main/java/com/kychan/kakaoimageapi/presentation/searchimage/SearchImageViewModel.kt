@@ -1,5 +1,6 @@
 package com.kychan.kakaoimageapi.presentation.searchimage
 
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -36,7 +37,7 @@ class SearchImageViewModel @Inject constructor(
                 .subscribe({
                     fetchSearchImage(it)
                 }, {
-
+                    Log.e(TAG, it.toString())
                 })
         )
     }
@@ -49,7 +50,7 @@ class SearchImageViewModel @Inject constructor(
                         SearchImageItem.of(it)
                     }
                 }, {
-
+                    Log.e(TAG, it.toString())
                 })
         )
     }
@@ -57,5 +58,9 @@ class SearchImageViewModel @Inject constructor(
     override fun onCleared() {
         compositeDisposable.clear()
         super.onCleared()
+    }
+
+    companion object {
+        private const val TAG = "SearchImageViewModel"
     }
 }
