@@ -2,19 +2,19 @@ package com.kychan.kakaoimageapi.presentation.searchimage
 
 import com.kychan.kakaoimageapi.domain.entity.SearchImageDocuments
 import java.io.Serializable
-import java.util.*
+import java.text.SimpleDateFormat
 
 data class SearchImageItem(
     val imageUrl: String,
     val displaySiteName: String,
-    val datetime: Date
+    val datetime: String
 ) : Serializable {
     companion object {
         fun of(searchImageDocuments: SearchImageDocuments): SearchImageItem =
             SearchImageItem(
                 imageUrl = searchImageDocuments.imageUrl,
                 displaySiteName = searchImageDocuments.displaySitename,
-                datetime = searchImageDocuments.datetime
+                datetime = SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(searchImageDocuments.datetime)
             )
     }
 }

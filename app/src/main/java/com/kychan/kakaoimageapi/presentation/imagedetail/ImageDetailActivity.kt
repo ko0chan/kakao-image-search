@@ -7,7 +7,6 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.kychan.kakaoimageapi.databinding.ActivityImageDetailBinding
 import com.kychan.kakaoimageapi.presentation.searchimage.SearchImageItem
-import java.text.SimpleDateFormat
 
 class ImageDetailActivity : AppCompatActivity() {
 
@@ -26,12 +25,13 @@ class ImageDetailActivity : AppCompatActivity() {
 
     private fun setView() {
         with(binding) {
+            supportActionBar?.hide()
             Glide.with(this@ImageDetailActivity)
                 .load(searchImageItem.imageUrl)
                 .into(fullImage)
 
             displaySitename.text = searchImageItem.displaySiteName
-            datetime.text = SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(searchImageItem.datetime)
+            datetime.text = searchImageItem.datetime
         }
     }
 
