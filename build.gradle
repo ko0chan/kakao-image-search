@@ -27,7 +27,7 @@ task clean(type: Delete) {
 }
 
 ext {
-    pagingVersion = '2.1.2'
+    pagingVersion = '3.0.0'
     glideVersion = '4.11.0'
     retrofitVersion = '2.9.0'
     coreVersion = '1.5.0'

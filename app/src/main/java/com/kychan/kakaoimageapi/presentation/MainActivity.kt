@@ -57,6 +57,9 @@ class MainActivity : AppCompatActivity() {
             rvImage.adapter = searchImageAdapter
             rvImage.layoutManager = GridLayoutManager(this@MainActivity, 3)
 
+            searchImageAdapter.addLoadStateListener {
+                binding.emptyTitle.isVisible = searchImageAdapter.itemCount == 0
+            }
 
         }
     }
@@ -64,8 +67,7 @@ class MainActivity : AppCompatActivity() {
     private fun setViewModel() {
         with(mainViewModel) {
             searchImageList.observe(this@MainActivity, {
-                searchImageAdapter.submitList(it)
-                binding.emptyTitle.isVisible = it.isNullOrEmpty()
+                searchImageAdapter.submitData(lifecycle, it)
             })
         }
     }

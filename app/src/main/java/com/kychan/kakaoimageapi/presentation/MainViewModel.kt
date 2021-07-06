@@ -3,9 +3,8 @@ package com.kychan.kakaoimageapi.presentation
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.paging.PagedList
-import androidx.paging.RxPagedListBuilder
-import com.kychan.kakaoimageapi.data.SearchImageDataSourceFactory
+import androidx.paging.PagingData
+import androidx.paging.map
 import com.kychan.kakaoimageapi.domain.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -22,8 +21,8 @@ class MainViewModel @Inject constructor(
 
     private val compositeDisposable = CompositeDisposable()
 
-    private val _searchImageList = MutableLiveData<PagedList<SearchImageItem>>()
-    val searchImageList: LiveData<PagedList<SearchImageItem>>
+    private val _searchImageList = MutableLiveData<PagingData<SearchImageItem>>()
+    val searchImageList: LiveData<PagingData<SearchImageItem>>
         get() = _searchImageList
 
     val textChange: PublishSubject<String> = PublishSubject.create()
@@ -44,17 +43,11 @@ class MainViewModel @Inject constructor(
 
     fun getSearchImage(searchWord: String) {
         compositeDisposable.add(
-            RxPagedListBuilder(
-                searchRepository.searchImage(searchWord)
-                    .map {
+            searchRepository.searchImage(searchWord)
+                .subscribe({ pagingData ->
+                    _searchImageList.value = pagingData.map {
                         SearchImageItem.of(it)
-                    },
-                SearchImageDataSourceFactory.pagedListConfig()
-            ).buildObservable()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({ pagedList ->
-                    _searchImageList.value = pagedList
+                    }
                 }, {
 
                 })
