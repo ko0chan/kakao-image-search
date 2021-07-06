@@ -14,7 +14,9 @@
         android:theme="@style/Theme.KakaoImageAPI"
         android:usesCleartextTraffic="true">
         <activity android:name=".presentation.imagedetail.ImageDetailActivity" />
-        <activity android:name=".presentation.searchimage.SearchImageActivity">
+        <activity
+            android:name=".presentation.searchimage.SearchImageActivity"
+            android:windowSoftInputMode="adjustPan">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
