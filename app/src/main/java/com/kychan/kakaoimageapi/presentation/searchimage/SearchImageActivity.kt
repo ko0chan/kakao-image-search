@@ -38,7 +38,7 @@ class SearchImageActivity : AppCompatActivity() {
                 setOnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                         if (text.isNotEmpty()) {
-                            mainViewModel.getSearchImage(text.toString())
+                            mainViewModel.fetchSearchImage(text.toString())
                         }
                         return@setOnEditorActionListener true
                     }

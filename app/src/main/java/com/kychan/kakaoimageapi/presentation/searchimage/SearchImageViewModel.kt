@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.paging.PagingData
 import androidx.paging.map
-import com.kychan.kakaoimageapi.domain.repository.SearchRepository
+import com.kychan.kakaoimageapi.domain.usecase.GetSearchImage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -16,7 +16,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchImageViewModel @Inject constructor(
-    private val searchRepository: SearchRepository
+    private val getSearchImage: GetSearchImage
 ) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
@@ -34,16 +34,16 @@ class SearchImageViewModel @Inject constructor(
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    getSearchImage(it)
+                    fetchSearchImage(it)
                 }, {
 
                 })
         )
     }
 
-    fun getSearchImage(searchWord: String) {
+    fun fetchSearchImage(searchWord: String) {
         compositeDisposable.add(
-            searchRepository.searchImage(searchWord)
+            getSearchImage(searchWord)
                 .subscribe({ pagingData ->
                     _searchImageList.value = pagingData.map {
                         SearchImageItem.of(it)
