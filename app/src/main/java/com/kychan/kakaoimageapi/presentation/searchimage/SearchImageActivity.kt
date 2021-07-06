@@ -1,8 +1,10 @@
 package com.kychan.kakaoimageapi.presentation.searchimage
 
+import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.inputmethod.EditorInfo
+import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
@@ -40,6 +42,9 @@ class SearchImageActivity : AppCompatActivity() {
                         if (text.isNotEmpty()) {
                             mainViewModel.fetchSearchImage(text.toString())
                         }
+                        val inputMethodManager =
+                            context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                        inputMethodManager.hideSoftInputFromWindow(searchView.windowToken, 0)
                         return@setOnEditorActionListener true
                     }
                     false
