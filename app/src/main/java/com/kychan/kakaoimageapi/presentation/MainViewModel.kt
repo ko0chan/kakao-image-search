@@ -1,10 +1,12 @@
 package com.kychan.kakaoimageapi.presentation
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.kychan.kakaoimageapi.di.ApiModule
+import androidx.paging.PagedList
+import androidx.paging.RxPagedListBuilder
+import com.kychan.kakaoimageapi.data.SearchImageDataSourceFactory
+import com.kychan.kakaoimageapi.domain.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -14,11 +16,14 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor() : ViewModel() {
+class MainViewModel @Inject constructor(
+    private val searchRepository: SearchRepository
+) : ViewModel() {
 
     private val compositeDisposable = CompositeDisposable()
-    private val _searchImageList = MutableLiveData<List<SearchImageItem>>()
-    val searchImageList: LiveData<List<SearchImageItem>>
+
+    private val _searchImageList = MutableLiveData<PagedList<SearchImageItem>>()
+    val searchImageList: LiveData<PagedList<SearchImageItem>>
         get() = _searchImageList
 
     val textChange: PublishSubject<String> = PublishSubject.create()
@@ -27,25 +32,31 @@ class MainViewModel @Inject constructor() : ViewModel() {
         compositeDisposable.add(
             textChange
                 .debounce(1, TimeUnit.SECONDS)
-                .observeOn(AndroidSchedulers.mainThread())
-                .doOnNext {
-                    getSearchImage(it)
-                }
-                .subscribe()
-        )
-    }
-
-
-    fun getSearchImage(searchWord: String) {
-        compositeDisposable.add(
-            ApiModule.provideKakaoApi()
-                .getSearchImage(query = searchWord)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe({
-                    _searchImageList.value = it.toSearchImageListItem()
+                    getSearchImage(it)
                 }, {
-                    Log.d("TAG", it.toString())
+
+                })
+        )
+    }
+
+    fun getSearchImage(searchWord: String) {
+        compositeDisposable.add(
+            RxPagedListBuilder(
+                searchRepository.searchImage(searchWord)
+                    .map {
+                        SearchImageItem.of(it)
+                    },
+                SearchImageDataSourceFactory.pagedListConfig()
+            ).buildObservable()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ pagedList ->
+                    _searchImageList.value = pagedList
+                }, {
+
                 })
         )
     }
