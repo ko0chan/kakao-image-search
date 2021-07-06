@@ -21,6 +21,7 @@ class SearchImageViewHolder(
             } else {
                 Glide.with(itemView.context)
                     .load(item.imageUrl)
+                    .placeholder(R.color.theme_F5F6F6)
                     .into(movieImage)
             }
 

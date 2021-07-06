@@ -18,6 +18,7 @@ class SearchImageDataSourceFactory(
         fun pagedListConfig() = PagedList.Config.Builder()
             .setInitialLoadSizeHint(PAGE_SIZE)
             .setPageSize(PAGE_SIZE)
+            .setPrefetchDistance(3)
             .setEnablePlaceholders(true)
             .build()
     }
