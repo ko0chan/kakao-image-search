@@ -11,6 +11,7 @@
         android:id="@+id/movie_image"
         android:layout_width="match_parent"
         android:layout_height="150dp"
-        android:src="@drawable/ic_search" />
+        android:src="@drawable/ic_search"
+        android:transitionName="@string/transition_search_image" />
 
 </androidx.cardview.widget.CardView>

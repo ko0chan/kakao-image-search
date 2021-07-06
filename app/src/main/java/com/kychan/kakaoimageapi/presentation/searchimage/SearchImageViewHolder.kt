@@ -1,6 +1,7 @@
 package com.kychan.kakaoimageapi.presentation.searchimage
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -9,7 +10,7 @@ import com.kychan.kakaoimageapi.databinding.ItemSearchListBinding
 
 class SearchImageViewHolder(
     parent: ViewGroup,
-    private val itemClick: (SearchImageItem) -> Unit,
+    private val itemClick: (SearchImageItem, View) -> Unit,
     private val binding: ItemSearchListBinding =
         ItemSearchListBinding.inflate(LayoutInflater.from(parent.context), parent, false)
 ) : RecyclerView.ViewHolder(binding.root) {
@@ -26,7 +27,7 @@ class SearchImageViewHolder(
             }
 
             movieImage.setOnClickListener {
-                itemClick(item)
+                itemClick(item, it)
             }
         }
     }

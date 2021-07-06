@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.inputmethod.EditorInfo
 import android.view.inputmethod.InputMethodManager
 import androidx.activity.viewModels
+import androidx.core.app.ActivityOptionsCompat
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.core.widget.doOnTextChanged
@@ -20,8 +21,11 @@ class SearchImageActivity : AppCompatActivity() {
     private lateinit var binding: ActivitySearchImageBinding
     private val mainViewModel by viewModels<SearchImageViewModel>()
     private val searchImageAdapter by lazy {
-        SearchImageAdapter { searchImageItem ->
-            startActivity(ImageDetailActivity.getIntent(this, searchImageItem))
+        SearchImageAdapter { searchImageItem, view ->
+            val options = ActivityOptionsCompat
+                .makeSceneTransitionAnimation(this@SearchImageActivity, view, view.transitionName)
+
+            startActivity(ImageDetailActivity.getIntent(this, searchImageItem), options.toBundle())
         }
     }
 

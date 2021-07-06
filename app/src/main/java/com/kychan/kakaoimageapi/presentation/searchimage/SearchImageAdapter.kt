@@ -1,11 +1,12 @@
 package com.kychan.kakaoimageapi.presentation.searchimage
 
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
 
 class SearchImageAdapter(
-    private val itemClick: (SearchImageItem) -> Unit
+    private val itemClick: (SearchImageItem, View) -> Unit
 ) :
     PagingDataAdapter<SearchImageItem, SearchImageViewHolder>(DIFF_CALLBACK) {
 
